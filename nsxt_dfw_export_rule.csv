@@ -1,0 +1,22 @@
+policy,rule_id,rule_name,rule_id_number,rule_source_groups,rule_destination_groups,rule_services,rule_applied_to,rule_action,rule_direction,rule_is_logged,rule_is_disabled,rule_tag,rule_is_default
+"Name: Default Layer2 Section, Applied_to: ['DFW'], Category: Ethernet, Is_stateful: False, Is_default: True"
+,default-layer2-rule,Default Layer2 Rule,1,['ANY'],['ANY'],['ANY'],['DFW'],ALLOW,IN_OUT,False,False,,True
+"Name: meregency-policies, Applied_to: ['DFW'], Category: Emergency, Is_stateful: True, Is_default: False"
+"Name: Default Malicious IP Block Rules, Applied_to: ['DFW'], Category: Infrastructure, Is_stateful: True, Is_default: True"
+,malicious-ip-at-source-rule,Malicious IP at Source Rule,5,['DefaultMaliciousIpGroup'],['ANY'],['ANY'],['DFW'],DROP,IN_OUT,False,True,MALICIOUS IP AT SOURCE RULE,True
+,malicious-ip-at-destination-rule,Malicious IP at Destination Rule,6,['ANY'],['DefaultMaliciousIpGroup'],['ANY'],['DFW'],DROP,IN_OUT,False,True,MALICIOUS IP AT DESTINATION RULE,True
+"Name: 新策略, Applied_to: ['DFW'], Category: Application, Is_stateful: True, Is_default: False"
+,新规则,新规则,14319,['cctest'],['ipset-test001'],['ANY'],['DFW'],ALLOW,IN_OUT,False,False,,False
+"Name: powercli-test, Applied_to: ['powercli-test02'], Category: Application, Is_stateful: True, Is_default: False"
+,powercli-test03,powercli-test03,13288,['ANY'],['ANY'],['ANY'],['DFW'],ALLOW,IN_OUT,False,False,,False
+,powercli-test01,powercli-test01,12264,['powercli-test02'],['powercli-test03'],"['Custom-1235', 'Custom-1234']","['powercli-test03', 'powercli-test02']",ALLOW,IN_OUT,False,True,powercli-test tag,False
+"Name: api-test, Applied_to: ['powercli-test03', 'powercli-test02'], Category: Application, Is_stateful: True, Is_default: False"
+,api-test01,api-test01,12266,['web_group'],['powercli-test03'],"['tcp-8090-https', 'Custom-1235']",['powercli-test03'],ALLOW,IN_OUT,False,True,,False
+,api-test02,api-test02,12265,['ipset1'],['powercli-test03'],"['Custom-1235', 'Custom-1234']",['powercli-test03'],DROP,IN,False,True,,False
+"Name: Default_VdcGroup_org01-vdcgroup01, Applied_to: ['org01-vdcgroup01'], Category: Application, Is_stateful: True, Is_default: False"
+,e9d12933-1c9a-4ab6-b970-455273773926,deny-vm01-to-vm02,4088,['testvm01'],['testvm02'],"['ICMP Echo Reply', 'ICMP Echo Request']",['org01-vdcgroup01'],ALLOW,IN_OUT,False,False,,False
+,ca6d271e-6547-42ba-8d1d-fe992d9db361,Default_VdcGroup_org01-vdcgroup01,4087,['org01-vdcgroup01'],['org01-vdcgroup01'],['ANY'],['org01-vdcgroup01'],ALLOW,IN_OUT,False,False,,False
+"Name: Default Layer3 Section, Applied_to: ['DFW'], Category: Application, Is_stateful: True, Is_default: True"
+,default_rule_NDP,Default Rule NDP,3,['ANY'],['ANY'],"['IPv6-ICMP Neighbor Advertisement', 'IPv6-ICMP Neighbor Solicitation']",['DFW'],ALLOW,IN_OUT,False,False,,False
+,default_rule_DHCP,Default Rule DHCP,4,['ANY'],['ANY'],"['DHCP-Server', 'DHCP-Client']",['DFW'],ALLOW,IN_OUT,False,False,,False
+,default-layer3-rule,Default Layer3 Rule,2,['ANY'],['ANY'],['ANY'],['DFW'],ALLOW,IN_OUT,False,False,,True
